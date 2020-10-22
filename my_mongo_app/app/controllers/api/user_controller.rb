@@ -7,6 +7,7 @@ class Api::UserController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id].to_i)
     render json: @user, status: :ok
   end
 
@@ -29,6 +30,7 @@ class Api::UserController < ApplicationController
   end
 
   def destroy
+    @user = User.find(params[:id].to_i)
     if @user.present?
       @user.destroy(user_params)
       render json: {message: 'success', data: @user}
