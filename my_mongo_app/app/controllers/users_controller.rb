@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       render json: @user, status: created
     else
-      render json: { data: @user.errors.full_messages}, status: :unprocessable_entity }
+      render json: { data: @user.errors.full_messages, status: :unprocessable_entity }
     end
   end
 
