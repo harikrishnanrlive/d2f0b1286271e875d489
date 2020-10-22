@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::UserController < ApplicationController
   before_action :find_user, only: %[show update destroy]
 
   def index
@@ -15,7 +15,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       render json: @user, status: created
     else
-      render json: {errors: @user.errors.full_messgaes, status: :unprocessable_entity }
+      render json: {errors: @user.errors.full_messages, status: :unprocessable_entity }
     end
   end
 
