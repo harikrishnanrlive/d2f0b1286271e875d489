@@ -21,6 +21,7 @@ class Api::UserController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id].to_i)
     if @user.present?
       @user.update(user_params)
       render json: {message: 'success', data: @user}
