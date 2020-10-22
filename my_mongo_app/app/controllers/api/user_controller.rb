@@ -47,7 +47,7 @@ class Api::UserController < ApplicationController
   private 
 
   def find_user
-    params.permit(:email, :firstName, :lastName)
+    @user = User.find(params[:id])
   end
 
   def user_params
