@@ -15,14 +15,15 @@ class Api::UsersController < ApplicationController
     if @user.save
       render json: @user, status: created
     else
-      render json: { data: @user.errors.full_messages}, status: :unprocessable_entity }
+      render json: {erros, @user.erros.full_messgaes},
+        status: :unprocessable_entity
     end
   end
 
   def update
     if @user.present?
       @user.update(user_params)
-      render json: { messages: 'success', data: @user }
+      render json: {message: 'success', data: @user}
     else
       render json: { errors: 'User not found'}, status: :not_found
     end
@@ -31,7 +32,7 @@ class Api::UsersController < ApplicationController
   def destroy
     if @user.present?
       @user.destroy(user_params)
-      render json: {messages: 'success', data: @user}
+      render json: {message: 'success', data: @user}
     else
       render json: {errors: "user not found"}, status: :not_found
     end
@@ -45,11 +46,6 @@ class Api::UsersController < ApplicationController
   end
 
   private 
-
-  def find_user
-    @user = User.find(params[:id])
-  end
-
   def user_params
     params.permit(:email, :firstName, :lastName)
   end
