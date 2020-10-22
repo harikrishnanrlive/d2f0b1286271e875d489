@@ -1,3 +1,4 @@
+require 'autoinc'
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
