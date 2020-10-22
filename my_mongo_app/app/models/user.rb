@@ -1,7 +1,7 @@
 require 'autoinc'
 class User
   include Mongoid::Document
-  include Mongoid: Autoinc
+  include Mongoid::Autoinc
   include Mongoid::Timestamps
   field :firstName, type: String
   field :lastName, type: String
