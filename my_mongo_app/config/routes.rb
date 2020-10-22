@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :user, only[:show, :create, :update, :destroy]
+    resources :user, only: [:show, :create, :update, :destroy]
     get 'users' => 'users#index'
     get 'typehead/:input' => 'users#index'
   end
