@@ -40,7 +40,7 @@ class Api::UserController < ApplicationController
     end
   end
 
-  def typehead
+  def typeahead
     @users = User.any_of({firstName => /. *#{params[:input]}}). */},
     {:lastName => /. *#{params[:input]}}). */},
     {:email => /. *#{params[:input]}}). */})
