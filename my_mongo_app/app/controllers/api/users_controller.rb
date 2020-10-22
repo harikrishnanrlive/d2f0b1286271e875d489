@@ -1,13 +1,13 @@
 class Api::UsersController < ApplicationController
-  before_action:find_user, except: %[create index]
+  before_action :find_user, only: %[show update destroy]
 
   def index
     @users = User.all
-    render json: @users, status: ok
+    render json: @users, status: :ok
   end
 
   def show
-    render json: @user, status: ok
+    render json: @user, status: :ok
   end
 
   def create
@@ -15,8 +15,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       render json: @user, status: created
     else
-      render json: {erros, @user.erros.full_messgaes},
-        status: :unprocessable_entity
+      render json: {errors: @user.errors.full_messgaes, status: :unprocessable_entity }
     end
   end
 
@@ -46,6 +45,11 @@ class Api::UsersController < ApplicationController
   end
 
   private 
+
+  def find_user
+    params.permit(:email, :firstName, :lastName)
+  end
+
   def user_params
     params.permit(:email, :firstName, :lastName)
   end
